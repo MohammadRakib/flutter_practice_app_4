@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'qoute.dart';
-
+import 'qoute_card.dart';
 void main() {
   runApp(MaterialApp(
     home: Home(),
@@ -33,7 +33,14 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.brown[900],
       ),
       body: Column(
-        children: qoute_list.map((qoute) => Text('${qoute.text} - ${qoute.author}')).toList(),
+        children: qoute_list.map((qoute) => qoute_card(
+            qt: qoute,
+            delete: (){
+              setState(() {
+                qoute_list.remove(qoute);
+              });
+            }
+        )).toList(),
       ),
     );
   }
